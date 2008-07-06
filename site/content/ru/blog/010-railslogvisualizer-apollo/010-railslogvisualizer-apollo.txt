@@ -1,0 +1,8 @@
+  <p><img src="http://html-blog.ru/assets/2007/4/3/RailsLogVisualizerLogo.gif" alt="RailsLogVisualizer" align="right"/>
+Продолжается тема весны. Нашел в своем RSS-ридере заждавшуюся с прошлой недели запись о выходе в свет новой супер-модной <a href="http://www.onrails.org/articles/2007/03/29/railslogvisualizer-meets-apollo">версии RailsLogVisualizer для Adobe Apollo</a>. Для запуска приложения нужно скачать <a href="http://labs.adobe.com/downloads/apolloruntime.html">инсталлятор Adobe Apollo</a> (8мб) и само <a href="http://onrails.org/files/RailsLogVisualizer0.4.air">приложение</a> (500кб).</p>
+
+<p>Выглядит весьма симпатично:</p>
+
+<p><a href="http://html-blog.ru/assets/2007/4/3/RailsLogVisualizer.png"><img src="http://html-blog.ru/assets/2007/4/3/RailsLogVisualizer_thumb.png" alt="RailsLogVisualizer + Apollo Screenshot"/></a></p>
+
+<p>Ранее <strong>RailsLogVisualizer</strong> был доступен только для пользователей OS X (инструкции по установке см. <a href="http://railslogvislzr.rubyforge.org/">страницу проекта</a>). Теперь его можно использовать и на Windows. Фактически, это первое Apollo-приложение, которое мне интересно использовать для повседневной работы. </p>

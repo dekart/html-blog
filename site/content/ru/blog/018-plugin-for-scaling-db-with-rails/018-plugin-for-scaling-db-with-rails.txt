@@ -1,0 +1,67 @@
+  <p>В связи с поднявшимся шумом вокруг масштабируемости социального сервиса <a href="http://twitter.com">Twitter</a>, написанного на <a href="http://rubyonrails.com">Ruby on Rails</a>, мне становится довольно сложно игнорировать эту тему. Фактически, проблема касается любого Rails-разработчика, трудящегося (или планирующего трудиться) на сервисами с большой нагрузкой. Разработчики <strong>Twitter</strong>, например, явно не ожидали, что в столь короткий срок требования к производительности их детища вырастут до <em>11 тысяч запросов в секунду</em> (в голове не укладывается даже). Такие стрессы, конечно, не предусмотришь заранее, но заранее знать как с ними бороться - надо.</p>
+
+<p>Собственно, одним из элементов стратеги увеличения производительности приложения надо назвать масштабирование системы хранения данных. Частным случаем такого масштабирования можно считать разделение данных на кластеры, хранящиеся в разных базах на разных серверах. Для реализации данного подхода буквально вчера ребята из <a href="http://www.revolutionhealth.com">RevolutionHealth</a> <a href="http://revolutiononrails.blogspot.com/2007/04/plugin-release-actsaspartitionable.html">анонсировали</a> специальный плагин к <strong>ActiveRecord</strong> под названием <a href="http://rubyforge.org/projects/actsaspartition">ActsAsPartitionable</a>. Пример использования:</p>
+
+<p><strong>Модель</strong></p>
+
+<pre><code>class SomeModel &lt; ActiveRecord::Base
+
+  # use the read_only database from the database.yml
+
+  acts_as_partitionable :name =&gt; "partition_1", 
+    :access =&gt; :readonly, 
+    :db_config =&gt; :read_only
+
+  # use the default database for partition_2
+
+  acts_as_partitionable :name =&gt; "partition_2"
+
+  # use the a specific w/r database for partition_3
+
+  acts_as_partitionable :name =&gt; "partition_3", 
+    :db_config =&gt; :some_model_partition
+
+  # Specify the database configuration from a hash
+
+  acts_as_partitionable :access =&gt; :readonly, 
+    :db_config =&gt; {
+      :adapter =&gt; "mysql", 
+      :database =&gt; "partionable_db_test", 
+      :username =&gt; "root", :password =&gt; "", 
+      :host =&gt; "localhost"
+    } 
+end
+
+</code></pre>
+
+<p><strong>Конфигурация БД в database.yml</strong></p>
+
+<pre><code>dbs:
+
+  database: master_db
+  host: master-host
+
+    read_only:
+      database: slave_db
+      host: slave-host
+
+    some_model_partition:
+      database: slave_db_2
+      host: slave-host
+</code></pre>
+
+<p><strong>Использование в коде</strong></p>
+
+<pre><code>r = SomeModel.readonly.find(:first) # executes against the read_only db - slave_db
+r.field = 'value'
+r.save! # raises ActiveRecord::ReadOnlyRecord
+r.readonly? # true
+
+t = SomeModel.partition_3.find(:first) # executes against slave_db_2
+t.field = 'some value'
+t.save! # success to partition_3
+</code></pre>
+
+<p>Официальная страница плагина: <a href="http://rubyforge.org/projects/actsaspartition">http://rubyforge.org/projects/actsaspartition</a></p>
+
+<p>У меня, к сожалению, пока нет проектов, на которых можно было бы протестировать данный плагин. Если кто-то попробует его на живом приложении - я буду рад услышать ваши отзывы.</p>

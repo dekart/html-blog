@@ -1,0 +1,4 @@
+  <p>Да-да-да! То самое, что носило таинственное название <strong>WPF/E</strong> (Windows Presentation Foundation Everywhere) стало называться <a href="http://www.microsoft.com/silverlight/">Microsoft Silverlight</a> и оформилось в браузерный плагин.</p>
+
+<p>Скачал <a href="http://go.microsoft.com/fwlink/?LinkID=77792&amp;clcid=0x409">плагин</a>, поставил, посмотрел <a href="http://go.microsoft.com/fwlink/?linkid=82364&amp;clcid=0x409">примеры</a>. Надо сказать, прикольно весьма. Работает сразу, причем в Firefox (!!!), что само по себе впечатляет. Проекты содержат некие <strong>XAML</strong>-файлы (видимо, аналог <strong>MXML</strong> во <a href="http://www.adobe.com/products/flex/">Flex</a>) и <strong>JavaScript</strong>-файлы с логикой. Никакого оформления в бинарные файлы пока не видно. Что ж, официальная beta назначена на начало мая, так что ждем с нетерпением.</p>
+

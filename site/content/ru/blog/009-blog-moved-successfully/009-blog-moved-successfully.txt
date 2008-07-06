@@ -1,0 +1,12 @@
+  <p>Дамы и господа, переезд успешно завершен. DNS обновились, страницы открываются, RSS работает, вроде все в порядке. </p>
+
+<p>Адреса RSS-потоков остались прежние:</p>
+
+<ul>
+<li><strong>Все посты</strong>: <a href="http://feeds.feedburner.com/HtmlBlog">http://feeds.feedburner.com/HtmlBlog</a></li>
+<li><strong>Только Ruby on Rails</strong>: <a href="http://feeds.feedburner.com/html-blog/rails">http://feeds.feedburner.com/html-blog/rails</a></li>
+</ul>
+
+<p>В процессе работы над переездом я сделал несколько приятных плюшек, которыми хочется пользоваться. Наиболее приятной мне кажется организация собственного адреса для <strong>OpenID</strong>-аутентификации, который я теперь могу использовать в качестве универсального логина на сайтах, поддерживающих <strong>OpenID</strong> (число которых, я надеюсь, будет только расти). Идею я подсмотрел у Ивана Сагалаева в посте <a href="http://softwaremaniacs.org/blog/2007/03/25/cicero-openid-hcard/">OpenID и hCard в Cicero</a> - всем рекоммендую к прочтению (хотя бы первой части).</p>
+
+<p>Одно плохо - чтение hCard на странице OpenID-аутентификатора, похоже, делает только <a href="http://softwaremaniacs.org/cicero/">детище</a> Ивана. Например, LiveJournal этого не делает - в качестве автора комментариев отображается безликий URL.</p>

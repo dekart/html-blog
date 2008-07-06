@@ -1,0 +1,252 @@
+<p>Сегодня я постараюсь показать, как можно использовать возможности недавно вышедшей библиотеки QooxDoo 0.6 RC1 в сочетании с Ruby on Rails.</p>
+
+<h1>Зачем (небольшое предисловие)</h1>
+
+<p>Для создания RIA-приложений можно использовать различные инструменты. В Ruby on Rails есть встроенная поддержка AJAX на базе библиотек Prototype и <a href="http://script.aculo.us/">Scriptaculous</a>, с их помощью можно делать достаточно гибкие интерфейсные возможности используя JavaScript и движок браузера. Недавно вышедший WebORB уже позволяет стыковать Ruby on Rails с Adobe Flex 2, с его помощью можно делать навороченные интерфейсы используя собственный движок Flex на базе Flash и ActionScript 3.</p>
+
+<p>И у того, и у другого подхода есть как плюсы, так и минусы. В качестве плюсов Prototype можно назвать легкость в использовании, гибкость, малый вес и независимость от установленных компонентов (например, Flash). В качестве минусов - наличие всего лишь базового функционала для создания интерактивных интерфейсов.</p>
+
+<p>Основной плюс Flex - это то, что Flex, по сути, самостоятельный framework с огромным набором компонентов, продуманным и задокументированным API. Минусы - отсутствие open-source среды разработки и зависимость от Flash-проигрывателя с достаточно ограниченными возможностями для интеграции с браузером (хотя бы тот факт что я не могу отобразить внутри Flex любой нужный мне HTML - это для моих задач просто неприемлимое ограничение).</p>
+
+<p>Оба эти подхода стали для меня неприемлимы когда возникла задача создать интерфейс, в котором широкий набор компонентов сочетался бы с гибкостью в представлении информации. В частности, встал вопрос об импортировании готовых HTML-документов с произвольным содержанием и отображении их внутри интерфейса. От Prototype пришлось отказаться, т.к. он примитивен, а от Flex - в связи с тем, что он не умеет отображать внутри себя хоть сколько-нибудь сложный HTML. Пришлось искать третий вариант.</p>
+
+<h1>QooxDoo</h1>
+
+<p><a href="http://www.qooxdoo.org/">QooxDoo</a> по набору визуальных компонентов уже вполне сопоставим с Flex. Во всяком случае, он гораздо ближе подошел к званию полноценного JavaScript-фрэймворка чем Prototype. С его помощью уже можно делать достаточно навороченные интерфейсы, работающие с серверной стороной. Основной плюс - это то, что он не требует никаких дополнительных компонентов и работает используя исключительно возможности браузера. Основной минус - большой вес библиотеки (код всей библиотеки весит примерно 950 килобайт, плюс еще заргужаемые картинки и иконки для интерфейса).</p>
+
+<p>Для меня он хорош тем, что может полноценно работать с HTML, в том числе отображать его внутри себя или себя внутри него. Это очень удачно вписывается в концепцию конкретной задачи, которую мне необходимо решить.</p>
+
+<h1>Первые шаги</h1>
+
+<p>При выборе идеи для демонстрации возможностей QooxDoo, я не буду далеко ходить и возьму за основу идею статьи <a href="http://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">Rolling with Ruby on Rails</a>, уже успевшей стать классическим документом для быстрого ознакомления с Ruby on Rails (если еще не читали - это большое упущение). Будем создавать книгу рецептов.</p>
+
+<p>Итак, начнем. Создаем новый проект:</p>
+
+<pre><code>rails qooxdoo_cookbook
+</code></pre>
+
+<p>Заходим в папку проекта, создаем нашу основную модель:</p>
+
+<pre><code>ruby script/generate model Recipe
+</code></pre>
+
+<p>В файле db/migrate/001<em>create</em>recipes.rb прописываем следующее:</p>
+
+<pre><code>class CreateRecipes &lt; ActiveRecord::Migration
+  def self.up
+    create_table :recipes do |t|
+      t.column :title, :string
+      t.column :description, :string
+      t.column :instructions, :text
+      t.column :created_at, :datetime
+    end
+  end
+
+  def self.down
+    drop_table :recipes
+  end
+end
+</code></pre>
+
+<p>Это наши инструкции для создания таблицы в базе данных проекта. Создаем БД и запускаем миграцию:</p>
+
+<pre><code>rake migrate
+</code></pre>
+
+<p>Все, таблица у нас есть, данные есть куда сложить. Теперь делаем контроллер:</p>
+
+<pre><code>ruby script/generate controller Recipes
+</code></pre>
+
+<p>Файлы контроллера созданы. В файле app/controllers/recipes_controller.rb прописываем:</p>
+
+<pre><code>class RecipesController &lt; ApplicationController
+  scaffold :recipe
+end
+</code></pre>
+
+<p>Теперь мы можем запустить сервер и добавить некоторые данные в нашу таблицу:</p>
+
+<pre><code>ruby script/server
+</code></pre>
+
+<p>Вбиваем некоторые данные в таблицу:</p>
+
+<p><img src="http://html-blog.ru/assets/2007/4/4/recipes_scaffold.gif" alt=""/></p>
+
+<p>Теперь нам нужно к нашему проекту пристыковать QooxDoo. Для этого мы из скачанного архива (для быстрого старта лучше качать готовый build, чтоб не возиться с компиляцией) в папку public нашего проекта полность копируем папку framework и переименуем ее в qooxdoo (для наглядности). Папочка эта весьма внушительная по размеру, в основном из-за картинок.</p>
+
+<p>Теперь мы создаем интерфейс. В контроллере RecipesController (app/controllers/recipes_controller.rb) мы добавляем пустой метод:</p>
+
+<pre><code>class RecipesController &lt; ApplicationController
+  scaffold :recipe
+
+  def index
+  end
+
+end
+</code></pre>
+
+<p>В шаблоне для этого метода (app/views/recipes/index.rhtml) прописываем следующее:</p>
+
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;script type="text/javascript" src="/qooxdoo/script/qx.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/javascripts/application.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>В файле public/javascripts/application.js мы инициализируем наш QooxDoo-интерфейс:</p>
+
+<pre><code>qx.core.Init.getInstance().defineMain(function() {
+  // Получаем основной документ
+  var rootDoc = qx.ui.core.ClientDocument.getInstance();
+
+  // Создаем заголовок формы и добавляем его в основной документ
+  var recipeLabel = new qx.ui.basic.Label(&amp;#8220;Recipes&amp;#8221;, &amp;#8220;R&amp;#8221;);
+  with(recipeLabel){
+    setLeft(10);
+    setTop(5);
+  }
+  rootDoc.add(recipeLabel);
+
+  // Создаем элемент &amp;#8220;список&amp;#8221;, в который мы будем принимать данные с сервера
+  var recipeList = new qx.ui.form.List();
+  with(recipeList){
+    setLeft(10);
+    setTop(20);
+    setWidth(400);
+    setHeight(200);
+  }
+  rootDoc.add(recipeList);
+
+  // Создаем кнопку для отправки запроса на сервер
+  var listRecipesButton = new qx.ui.form.Button(&amp;#8220;List Recipes&amp;#8221;);
+  with(listRecipesButton){
+    setLeft(10);
+    setTop(230);
+    setWidth(70);
+  }
+  rootDoc.add(listRecipesButton);
+
+});
+
+</code></pre>
+
+<p>Если мы теперь откроем проект в браузере то на странице /recipes/ мы увидим следующее:</p>
+
+<p><img src="http://html-blog.ru/assets/2007/4/4/qooxdoo_interface.gif" alt="Qooxdoo Interface"/></p>
+
+<p>Мило, не правда ли? :) Старые добрые кнопочки.</p>
+
+<p>Однако, одних только кнопочек недостаточно. Нам необходимо сделать так, чтобы эти кнопочки взаимодействовали с серверной стороной. Для начала привяжем получение списка рецептов. Для этого модифицируем application.js:</p>
+
+<pre><code>qx.core.Init.getInstance().defineMain(function() {
+  // Получаем основной документ
+  var rootDoc = qx.ui.core.ClientDocument.getInstance();
+
+  // Добавляем объект для связи с сервером
+  var recipeService = new qx.io.remote.RemoteRequest(”/recipes/list”, “GET”);
+  with(recipeService){
+
+    // Говорим серверу что данные нам нужны в XML
+    setRequestHeader(”Accept”, “text/xml”);
+
+    // Вешаем событие, которое вызывается при успешном завершении запроса
+    addEventListener(”completed”,
+      function(e){
+        // Преобразуем полученный XML в объекты с помощью qx.client.Builder и добавляем их в объект recipeList
+        new qx.client.Builder().build(recipeList, e.getData().getContent());
+      }
+    );
+  }
+
+  // Вызов удаленного сервиса
+  function loadRecipes(){
+    recipeService.send();
+  }
+
+  // Создаем заголовок формы и добавляем его в основной документ
+  var recipeLabel = new qx.ui.basic.Label(”Recipes”, “R”);
+  with(recipeLabel){
+    setLeft(10);
+    setTop(5);
+  }
+  rootDoc.add(recipeLabel);
+
+  // Создаем элемент “список”, в который мы будем принимать данные с сервера
+  var recipeList = new qx.ui.form.List();
+  with(recipeList){
+    setLeft(10);
+    setTop(20);
+    setWidth(400);
+    setHeight(200);
+  }
+  rootDoc.add(recipeList);
+
+  // Создаем кнопку для отправки запроса на сервер
+  var listRecipesButton = new qx.ui.form.Button(”List Recipes”);
+  with(listRecipesButton){
+    setLeft(10);
+    setTop(230);
+    setWidth(70);
+
+    // Вешаем событие, которое вызывается по нажатию кнопки
+    addEventListener(”execute”, loadRecipes);
+  }
+  rootDoc.add(listRecipesButton);
+
+});
+</code></pre>
+
+<p>Теперь по нажатию на кнопку List Recipes будет отправляться запрос на сервер. Однако, со стороны сервера должен прийти адекватный ответ. Для этого модифицируем контроллер RecipesController, а именно метод list:</p>
+
+<pre><code>class RecipesController &lt; ApplicationController
+  scaffold :recipe
+
+  def index
+  end
+
+  def list
+    @recipe_pages, @recipes = paginate :recipes
+
+    respond_to do |wants|
+      wants.xml{render :partial =&gt; “list”}
+      wants.html{render_scaffold}
+    end
+  end
+
+end
+</code></pre>
+
+<p>Теперь если браузер запросит результат в виде HTML, то скрипт выдаст стандартный scaffold. Если же потребует XML - будет рендериться некий partial, который мы задаем в файле app/views/recipes/_list.rxml:</p>
+
+<pre><code>xml.tag!(&amp;#8220;qx.client.builder.Container&amp;#8221;){
+  @recipes.each do |recipe|
+    xml.tag!(&amp;#8220;qx.ui.form.ListItem&amp;#8221;, :label =&gt; recipe.title, :value =&gt; recipe.id)
+  end
+}
+
+</code></pre>
+
+<p>Вот вроде и всё. Открываем страницу /recipes/, жмем кнопку - и, в идеале, мы должны получить те данные, которые вбивали в самом начале:</p>
+
+<p><img src="http://html-blog.ru/assets/2007/4/4/qooxdoo_interface_with_data.gif" alt=""/></p>
+
+<p>Если же мы в самом начале забыли ввести данные или хотим чтобы данных было побольше - открываем страницу /recipes/list/ и вводим их через обычный scaffold :) Вуаля!</p>
+
+<h1>Итог</h1>
+
+<p>В общем и в целом, мне нравится работать с QooxDoo. Конечно, есть ряд существенных минусов, о которых тоже нельзя умолчать:</p>
+
+<pre><code>* Документация в большинстве своем содержит только перечисление свойств, методов и их параметров. Полноценно задокументированы лишь некоторые классы и методы. Однако, при наличии некоторого опыта, разобраться все же можно, благо названия все говорящие, да и примеры использования классов тоже есть (папка demo/test)
+* Не самая высокая скорость работы библиотеки. А что вы хотели от почти метра JavaScript’овых кодов? Для такого объема - более чем прилично. Тем более что, насколько я понимаю, можно делать custom-билды (но об этом как-нибудь отдельно)
+* Отсутствие средств разработки (IDE). С этим пока что ничего не поделаешь.
+
+</code></pre>
+
+<p>Приятного вам кода.</p>
