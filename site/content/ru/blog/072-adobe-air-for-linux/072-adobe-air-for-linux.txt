@@ -1,0 +1,4 @@
+  <p>Мы тут спали, а Adobe выпустил альфа-версию <a href="http://labs.adobe.com/wiki/index.php/AIR_for_Linux:Release_Notes">Adobe AIR под Linux</a>. Как ни парадоксально, Ubuntu 7.04 и 7.10 в спике поддерживаемых OS нету, хотя на дворе уже релиз-кандидаты 8.04. Впрочем, возможно это минимальные требования.</p>
+
+<p>Скачать это чудо-юдо можно <a href="http://labs.adobe.com/downloads/air_linux.html">тут</a></p>
+

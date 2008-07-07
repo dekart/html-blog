@@ -1,0 +1,13 @@
+  <p>Если вы интересуетесь созданием приложений <a href="http://labs.adobe.com/technologies/air/">Adobe AIR</a> и библиотекой <a href="http://extjs.com/">Ext JS</a>, то вам будет полезен цикл статей от Brice Mason, посвященный созданию AIR-приложения для загрузки фотографий на сервер:</p>
+
+<ul>
+<li><a href="http://dev.aol.com/blog/bricemason/adobe-air-xdrive-picture-syncing-part-1">Adobe AIR Xdrive Picture Syncing: Part 1</a></li>
+
+<li><a href="http://dev.aol.com/blog/bricemason/adobe-air-xdrive-picture-syncing-part-2">Adobe AIR Xdrive Picture Syncing: Part 2</a></li>
+<li><a href="http://dev.aol.com/blog/bricemason/adobe-air-xdrive-picture-syncing-part-3">Adobe AIR Xdrive Picture Syncing: Part 3</a></li>
+<li><a href="http://dev.aol.com/blog/bricemason/adobe-air-xdrive-picture-syncing-part-4">Adobe AIR Xdrive Picture Syncing: Part 4</a></li>
+<li><a href="http://dev.aol.com/blog/bricemason/adobe-air-xdrive-picture-syncing-part-5">Adobe AIR Xdrive Picture Syncing: Part 5</a></li>
+</ul>
+
+<p>Мне лично этот цикл статей оказался крайне полезен тем, что отделил в моем мозгу понятия AIR и Flex, которые до этого почему-то жили исключительно совместно. Теперь в ближайших планах - попробовать сделать приложение AIR + Ext JS. <a href="http://www.html-blog.ru/2008/3/9/adobe-air-1-0-features">Возможности Adobe AIR 1.0</a> поистине впечатляют.</p>
+

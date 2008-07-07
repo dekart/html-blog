@@ -1,0 +1,62 @@
+  <p>Анонсирую свой новый плагин - <strong>acts_as_taggable_with_types</strong>. Суть этого плагина проста - возможность пометки объектов разными типами тэгов. </p>
+
+<p>Общая абстрактная идея пометки тэгами была реализована еще <strong>DHH</strong> в плагине <a href="http://wiki.rubyonrails.org/rails/pages/Acts+As+Taggable+Plugin">acts_as_taggable</a>, а затем <strong>Jonathan Viney</strong> развил идею, создав <a href="http://svn.viney.net.nz/things/rails/plugins/acts_as_taggable_on_steroids/README">acts_as_taggable_on_steroids</a>. Последний и был взят за основу при создании плагина.</p>
+
+<p>Итак, разные типы тэгов - для чего оно надо? Например, есть у нас такая задача: мы создаем социальную сеть, в которой пользователь должен иметь возможность в профиле указать два типа своих интересов - музыкальные предпочтения и предпочтения в кинематографе. В идеале, интересы пользователя лучше всего хранить в тэгах, однако <strong>acts_as_taggable</strong> и <strong>acts_as_taggable_on_steroids</strong> нам не позволяют хранить типы тэгов. Тут на помощь и приходит мой плагин:</p>
+
+<pre><code>class User < ActiveRecord::Base
+  acts_as_taggable :music, :film
+end
+</code></pre>
+
+<p>На выходе мы получаем методы, аналогичные <code>tag_list</code> и <code>tag_list=</code> в предыдущих плагинах: <code>music_list</code>, <code>music_list=</code>, <code>film_list</code>, <code>film_list=</code>. Первые два отвечают за список музыкальных тэгов, вторые - тэгов по фильмам. Причем сохраняются методы <code>tag_list</code> и <code>tag_list=</code>, которые позволяют работать со списком тэгов в целом, вне зависимости от типа тэгов.</p>
+
+<pre><code>@user.music_list = "Rock, Trash"
+@user.film_list = "Horror, Comedy"
+@user.save
+@user.reload
+
+@user.music_list # => "Rock, Trash"
+@user.film_list # => "Horror, Comedy"
+@user.tag_list # => "Rock, Trash, Horror, Comedy"
+</code></pre>
+
+<p><strong>Поиск по меткам</strong></p>
+
+<p>Для поиска объектов по тематическим меткам, используйте методы <code>find_by_*</code> и <code>find_all_by_*</code>. Первые - для выборки одного объекта, вторые - для выборки коллекции объектов:</p>
+
+<pre><code>User.find_by_music("Rock") # => @user1
+
+User.find_all_by_music("Rock") # => [@user1, @user2]</code></pre>
+
+<p>Для выборки по нескольким меткам одновременно, укажите метки через запятую. В этом случае будут выбраны записи, у которых встречается одна или несколько из указанных меток:</p>
+
+<pre><code>User.find_all_by_music("Rock, Trash") # => [@user1, @user2, @user3]</code></pre>
+
+<p>Для поиска с обязательным включением всех меток, используйте ключ <code>:match_all =&gt; true</code>:</p>
+
+<pre><code>User.find_all_by_music("Rock, Trash", :match_all => true) # => [@user3]</code></pre>
+
+<p>Для поиска по меткам вне зависимости от их типа, используйте методы <code>find_by_tag</code> и <code>find_all_by_tag</code>:</p>
+
+<pre><code>User.find_all_by_tag("Rock, Comedy") # => [@user1, @user2, @user4]</code></pre>
+
+<p><strong>Установка</strong></p>
+
+<p>Для начала, устанавливаем сам плагин:</p>
+
+<pre><code>ruby script/plugin install \ http://dekart-plugins.googlecode.com/svn/trunk/acts_as_taggable_with_types</code></pre>
+
+<p>Затем, запускаем генератор для создания миграции с необходимыми таблицами:</p>
+
+<pre><code>ruby script/generate taggable_migration AddTaggingSupport</code></pre>
+
+<p>Ну и напоследок, запускаем сами миграции:</p>
+
+<pre><code>rake db:migrate</code></pre>
+
+<p>Баги для плагина можно постить сюда:
+<a href="http://code.google.com/p/dekart-plugins/issues/list">http://code.google.com/p/dekart-plugins/issues/list</a></p>
+
+<p>Пока что плагин без тестов, однако я надеюсь исправить это досадное упущение.</p>
+

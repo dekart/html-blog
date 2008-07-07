@@ -1,0 +1,74 @@
+  <p>Зная способы улучшить скромный быт разработчика, мне порой до слез больно смотреть, как люди корячатся над простейшими задачами. Одной из таких задач является вывод коллекции объектов (новостей, картинок, товаров в каталоге) с разбивкой по страницам. </p>
+
+<p>Чаще всего эта задача реализуется через стандартный модуль <a href="http://api.rubyonrails.org/classes/ActionController/Pagination.html">Pagination</a>, встроенный в <strong>Rails</strong>. К счастью, в <strong>Edge</strong> эта безумная кувалда вынесена в отдельный плагин, дабы не смущать умы честных разработчиков. Стандартный <strong>Pagination</strong> невероятно медленный и громоздкий. Слишком много ненужного хлама вокруг достаточно простой задачи. Есть гораздо более удобное решение задачи разбивки объектов по страницам - плагин <a href="http://plugins.require.errtheblog.com/browser/will_paginate/README"><strong>will_paginate</strong></a>.</p>
+
+<p><strong>Использование</strong></p>
+
+<p>В плагине <strong>will_paginate</strong> вся логика разбивки коллекции по страницам вынесена в модель. Вместо того, чтобы создавать отдельно объект для страниц и отдельно для коллекции данных, <strong>will_paginate</strong> при выборке создает прокси-объект, который одновременно отвечает и за страницы, и за данные. </p>
+
+<p>Выборка данных выглядит следующим образом:</p>
+
+<pre><code>@posts = Post.paginate :page => params[:page]</code></pre>
+
+<p>В переменную <code>@page</code> будет выбрана коллекция объектов, расположенных на странице с номером <code>params[:page]</code>. С этой переменной можно работать точно так же, как с массивом объектов, выбранных методом <code>find</code>. Однако, кроме стандартных методов коллекции, у этой переменной добавляются следующие методы:</p>
+
+<ul>
+<li><code>current_page</code> - текущая страница (по умолчанию 1)</li>
+<li><code>per_page</code> - количество объектов на страницу (по умолчанию 30)</li>
+<li><code>total_entries</code> - общее число объектов на всех страницах</li>
+<li><code>page_count</code> - общее число страниц</li>
+
+<li><code>offset</code> - текущее смещение (на первой странице смещение равно 0)</li>
+<li><code>previous_page</code> - номер предыдущей страницы</li>
+<li><code>next_page</code> - номер следующей страницы</li>
+</ul>
+
+<p>Методу <code>paginate</code> можно передавать параметры точно так же, как методу <code>find</code>:</p>
+
+<pre><code>@posts = Post.paginate :conditions => ["publicated = ?", true], 
+                       :order => "date", 
+                       :page => params[:page]</code></pre>
+
+<p>Кроме того, можно использовать &#8220;магические&#8221; методы <code>paginate_by_*</code>:</p>
+
+<pre><code>@posts = Post.paginate_by_publicated(true, :order => "date", :page => params[:page])</code></pre>
+
+<p>Выборки данных в этом случае будут осуществляться с помощью методов <code>find_all_by_*</code>. В данном примере с помощью <code>find_all_by_publicated</code>.</p>
+
+<p>Мало того, выборку можно делать не только для класса, но и для связанных объектов (например, через <code>has_many</code>):</p>
+
+<pre><code>@posts = @user.posts.paginate :page => params[:page]</code></pre>
+
+<p>По умолчанию коллекция разбивается на страницы по 30 объектов, однако это значение можно изменить, задав для класса переменную <code>per_page</code>:</p>
+
+<pre><code>class Post < ActiveRecord::Base
+  cattr_reader :per_page
+  @@per_page = 10
+end</code></pre>
+
+<p>или</p>
+
+<pre><code>class Post < ActiveRecord::Base
+  def self.per_page
+    return 10
+  end
+end</code></pre>
+
+<p>Вывод данных и нумератора страниц в шаблонах реализуется более чем просто:</p>
+
+<pre><code>&lt;h1&gt;Мои записи&lt;/h1&gt;
+&lt;% @posts.each do |post| %&gt;
+
+  &lt;p&gt;&lt;%= post.title %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+
+&lt;b&gt;Страницы:&lt;/b&gt;
+&lt;%= will_paginate @posts %&gt;
+</code></pre>
+
+<p>Собственно, это всё :) Согласитесь, гораздо проще, чем дефолтный <strong>Pagination</strong>.</p>
+
+<p><strong>Установка</strong></p>
+
+<pre><code>ruby script/plugin install svn://errtheblog.com/svn/plugins/will_paginate</code></pre>
+

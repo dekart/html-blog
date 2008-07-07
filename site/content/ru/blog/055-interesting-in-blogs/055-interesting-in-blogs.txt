@@ -1,0 +1,14 @@
+  <p>Чтобы блог не зарастал плесенью, буду периодически выкладывать ссылки на интересные материалы, попадающиеся у меня в ридере в разделе Ruby on Rails. Итак, интересное чтиво на сегодня:</p>
+
+<ul>
+<li><p><strong>Константин Тумалевич</strong> делает <a href="http://tumalevich.pp.ru/2008/2/26/100">мини-обзор Sequel</a>, легковесного ORM на Ruby. Не ActiveRecord&#8217;ом единым жив ruby-мир. Думаю, мне вполне пригодится для заполнения данными таблиц в SQLite базе для приложения Adobe AIR, над которым я посиживаю вечерами (кстати, <a href="http://www.html-blog.ru/2008/2/26/adobe-air-1-0-released">Adobe AIR уже шагает по планете</a>).</p></li>
+<li><p><strong>Relevance, Inc.</strong> выпустили <a href="http://blog.thinkrelevance.com/2008/2/26/tarantula-vs-your-rails-app">плагин Tarantula</a> - инструмент для тестирования ответов вашего Rails-приложения. Tarantula ходит по приложению, заполняет поля форм, смотрит на ответы, которые дает сервер, а потом формирует отчет. По идее должно быть удобно для отслеживания обработки некорректных данных. Возьмем на заметку.</p></li>
+
+<li><p><strong>Peter Cooper</strong> делает обзор <a href="http://www.rubyinside.com/the-new-most-important-ruby-book-oreillys-the-ruby-programming-language-778.html">&#8220;The Ruby Programming Language”</a> - новой книги Дэвида Флэнагана и Юкихиро Мацумото (помните такого?), вышедшей в издательстве o&#8217;Reilly. Судя по отзывам, книге суждено стать новой библией для ruby-программеров. Само собой, русифицированной версии книги мы дождемся еще не скоро, однако если с английским все в порядке - уже пора бежать в <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FRuby-Programming-Language-David-Flanagan%2Fdp%2F0596516177%2F&amp;tag=mensfootwesto-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">интернет-магазин</a>.</p></li>
+<li><p><strong>Daniel Wanja</strong> радует нас выпуском <a href="http://www.onrails.org/articles/2008/02/26/websnapshot-and-railslogvisualizer-ported-to-air-1-0">RailsLogVisualizer под Adobe AIR 1.0</a>. Когда я в последний раз запускал этот визуализатор, у него были какие-то косяки с большими логами и обработкой UTF-8, но это было еще по-моему в момент выхода AIR beta 1. Вполне вероятно, что сейчас уже все исправлено.</p></li>
+<li><p><strong>Ryan Bates</strong> выпустил <a href="http://railscasts.com/episodes/94">94 серию Rails Casts</a>, посвященную работе с ActiveResource - новой мега-суровой фичей вторых рельс. Если говорить кратко - это аналог ActiveRecord, тянущий данные не из базы, а из другого приложения по HTTP. Райан дает самые азы работы с этой библиотекой, вполне достаточные для понимания общих принципов.</p></li>
+
+</ul>
+
+<p>На сегодня все. Stay tuned. </p>
+

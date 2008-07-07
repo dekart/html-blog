@@ -1,0 +1,14 @@
+  <p>Сегодня под кофе читаю <a href="http://www.railsenvy.com/2008/7/2/rails-envy-podcast-episode-036-07-02-2008">Rails Envy</a>. Самое интересное для меня:</p>
+
+<ul>
+<li><a href="http://blogs.zdnet.com/enterprisealley/?p=188">Ruby on Rails: scaling to 1 billion page views per month</a> - твиттер курит в стороне</li>
+<li><a href="http://rubypond.com/articles/2008/06/26/make-your-own-im-bot-in-ruby-and-interface-it-with-your-rails-app">XMPP + Ruby</a> - разработка джаббер-клиента на руби (без рельс)</li>
+<li><a href="http://github.com/rails/rails/commit/b9528ad3c5379896b00772cb44faf1db0fd882d7">acts_as_state_machine уже в Edge Rails</a>, минус один плагин практически из всех проектов</li>
+</ul>
+
+<p>На закуску вакансия:</p>
+
+<ul>
+<li><a href="http://moikrug.ru/vacancies/053325849/">Разработчик Ruby on Rails, Москва, 60-100 т.р.</a></li>
+</ul>
+

@@ -1,0 +1,43 @@
+  <p>Как выяснилось, я не писал записок уже целый месяц. При нынешней загруженности это в принципе не удивительно, но несколько печально. После женитьбы я решил несколько перестроить свою жизнь и свой подход к работе, чтобы освободить побольше времени для семьи и социальной жизни. В связи с этим я старательно исследую всевозможные варианты сокращения повседневной рутины, пробую внедрять различные инструменты для облегчения собственного труда.</p>
+
+<p>Так получается, что примерно половину рабочего времени я трачу на разработку браузерной игры. Где-то с месяц назад я написал пробное приложение под <a href="http://facebook.com">Facebook</a> и понял, что в этом что-то есть. На эту тему решил в какой-то мере воплотить в жизнь свою детскую мечту - написать игру. Сюжет достаточно простой - баталии на космических кораблях. Уже сейчас есть полурабочий прототип, пока что не привязанный к <a href="http://developers.facebook.com/">Facebook API</a>, в котором уже можно даже сражаться. Разработка продвигается достаточно медленно - приходится все выверять, писать большое количество тестов на пока что слабо изученном мной <a href="http://rspec.rubyforge.org/">RSpec</a>. Ну и несколько отвлекают фриланс-проекты, хоть их и немного, да и не сложные они.</p>
+
+<p>За месяц накопилось изрядное количество ссылок, которыми я бы хотел с вами поделиться:</p>
+
+<ul>
+<li><p><a href="http://evang.eli.st/blog/2007/10/8/story-runner-top-to-bottom-screencast">Story Runner top to bottom screencast</a><br />
+Скринкаст, посвященный написанию интеграционных тестов с помощью RSpec</p></li>
+<li><p><a href="http://tuples.us/2007/10/23/if-you-arent-writing-matchers-you-arent-using-rspec/">If you aren’t writing Matchers, you aren’t using RSpec</a><br />
+Технология написания мэтчеров - классов для проверки условий в RSpec, позволяющих сделать тесты еще более похожими на человеческий язык.</p></li>
+<li><p><a href="http://unspace.ca/discover/pageless/">Endless Pageless: No More Next Page</a><br />
+Учимся обходиться без переключателя страниц</p></li>
+
+<li><p><a href="http://blog.jcoglan.com/packr/">PackR</a><br />
+Плагин для упаковки JavaScript в ваших приложениях</p></li>
+<li><p><a href="http://www.xnot.org/sinatra/beginning.html"> Sinatra Tutorial. A good starting point</a><br />
+Обзорная статья по Sinatra - простейшему фреймворку для создания сайтов с элементарным функционалом. Еще проще чем <a href="http://merb.rubyforge.org/files/README.html">Merb</a></p></li>
+<li><p><a href="http://datamapper.org/getting_started.html">Getting started with datamapper</a><br />
+DataMapper - альтернатива ActiveRecord. Сам не пробовал, но знающие люди говорят что кушать можно.</p></li>
+<li><p><a href="http://graticule.rubyforge.org/">Graticule</a><br />
+Graticule is a geocoding API for looking up address coordinates and performing distance calculations. </p></li>
+
+<li><p><a href="http://www.railsontherun.com/2007/10/4/sexy-charts-in-less-than-5-minutes">Sexy charts in less than 5 minutes</a><br />
+Создание симпатичных графиков и диаграмм в Rails-приложениях</p></li>
+<li><p><a href="http://rubymatt.rubyforge.org/mailtrap/">Mailtrap</a><br />
+Mailtrap is a mock SMTP server for use in Rails development.</p></li>
+<li><p><a href="http://www.quarkruby.com/2007/9/20/ruby-on-rails-security-guide">Ruby on Rails Security Guide</a><br />
+Большая серьезная статья о безопасности Rails-приложений</p></li>
+<li><p><a href="http://www.rorsecurity.info/ruby-on-rails-security-cheatsheet/">Ruby on Rails Security Cheatsheet</a><br />
+Сборник советов по безопасности</p></li>
+<li><p><a href="http://labs.peritor.com/webistrano">Webistrano</a><br />
+
+Веб-интерфейс к <a href="http://www.capify.org/">Capistrano</a> (кстати, вышла версия 2.1)</p></li>
+<li><p><a href="http://www.weheartcode.com/2007/10/05/reading-an-excel-file-with-ruby">Reading An Excel File With Ruby</a><br />
+Рабы корпораций, это специально для вас :) Чтение данных из Excel-файлов</p></li>
+<li><p><a href="http://developer.amazonwebservices.com/connect/entry.jspa?externalID=955">Economical Use of Amazon S3 with Ruby on Rails</a><br />
+Учимся использовать Amazon S3 без лишних затрат</p></li>
+</ul>
+
+<p>Если у вас есть какие-нибудь интересные ссылки - давайте меняться :)</p>
+
+

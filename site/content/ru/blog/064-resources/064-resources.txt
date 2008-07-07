@@ -1,0 +1,25 @@
+  <p>&#8230;как же мне надоело их писать день ото дня :) Я с каждым днем все хуже отношусь к коду, содержащему хоть одну лишнюю строку. И стандартные ресурсные контроллеры тоже попали в эту обойму: если ты правильно пишешь код контроллеров, то он практически не отличается в том, что касается базовых вещей.</p>
+
+<p>В общем, нарыл я сегодня такой вот замечательный плагин - <a href="http://mr.hamptoncatlin.com/">make_resourceful</a>. С его помощью весь код нескольких контроллеров свелся примерно к следующему:</p>
+
+<pre><code>
+class Admin::EventsController < ApplicationController
+  before_filter :login_required
+  access_control :DEFAULT => "admin | webmaster"
+
+  layout "layouts/admin/events"
+
+  make_resourceful do
+    actions :all
+
+    belongs_to :page
+
+    before :new do
+      @event.parent = @page
+    end
+  end
+end
+</code></pre>
+
+<p>Тут реализованы все стандартные экшены - создание, редактирование, удаление. Все что нужно сверх того - дописываем как обычно. Рекомендую, одним словом.</p>
+

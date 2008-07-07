@@ -1,0 +1,11 @@
+# Built-in
+custom_path: "/2007/9/1/black-belt"
+
+# Custom
+title: "Черный пояс"
+
+publicated_at: "09.01.2007"
+
+tags:
+- Ruby on Rails
+- Django

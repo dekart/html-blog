@@ -1,0 +1,2 @@
+  <p>Не, ну такое в рельсовом траке ваще упускать нельзя: <a href="http://dev.rubyonrails.org/ticket/10919">penis_enhancement.diff</a>. Круче любых Фишек.нет</p>
+

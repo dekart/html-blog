@@ -1,0 +1,10 @@
+  <ul>
+<li><a href="http://refcardz.dzone.com/refcardz/flexible-rails?oid=list3624">Flexible Rails: Flex 3 on Rails 2</a> - стыкуем рельсы с флексом</li>
+<li><a href="http://ru.hashtrain.com/2008/6/19/rails-xss">Rails и XSS</a> - чтиво на тему безопасности от доселе мне неизвестной команды <a href="http://ru.hashtrain.com/">Hash Train</a></li>
+<li><a href="http://alexanders.in.ua/2008/7/3/mod_rails">Настройка mod_rails</a> - опыт конфигурации веб-сервера</li>
+
+<li><a href="http://github.com/relevance/cap_gun/tree/master">CapGun</a> - плагин к Capistrano для отправки уведомлений о деплое сразу после его завершения</li>
+<li><a href="http://weblog.rubyonrails.com/2008/7/6/living-on-the-edge-3">Новое в Edge Rails</a> - поддержка Thin, multi-table conditions, humanize</li>
+<li><a href="http://computing.southern.edu/halterman/OOPJ/index.html">Object-oriented Programming in Java</a> - бесплатная книга для изучения дружественных языков</li>
+</ul>
+

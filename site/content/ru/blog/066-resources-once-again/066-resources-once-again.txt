@@ -1,0 +1,10 @@
+  <p><a href="http://zoob.ru/">Иван Немытченко</a> в <a href="http://groups.google.com/group/ror2ru">ror2ru</a> дал наводку на плагин <a href="http://soylentfoo.jnewland.com/articles/2007/09/17/resource_this-dry-rails-resource-controllers">resource_this</a>, облегчающий создание ресурсо-ориентированных контроллеров:</p>
+
+<pre><code>class CommentsController < ActionController::Base
+  resource_this :nested => [:posts]
+end
+</code></pre>
+
+<p>Вполне достойная альтернатива <a href="http://www.html-blog.ru/2008/4/2/resources">make_resourceful</a>, о котором я вчера писал.</p>
+  
+

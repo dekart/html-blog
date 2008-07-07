@@ -1,0 +1,11 @@
+# Built-in
+custom_path: "/2008/6/8/utf-8-rss-fix"
+
+# Custom
+title: "Фикс для UTF-8 в RSS"
+
+publicated_at: "06.08.2008"
+
+tags:
+- Ruby on Rails
+

@@ -1,0 +1,59 @@
+  <p>Есть такая категория хелперов, которые являются по сути обертками к рендеру партиалов и служат для передачи дефолтных значений различных параметров. Код таких хелперов выглядит примерно так:</p>
+
+<pre><code>
+def my_helper(options = {})
+  default_options = {
+    :default1 => 123
+  }
+
+  render :partial => 'my_helper_partial', 
+    :locals => {
+      :options => default_options.merge(options)
+    }
+end
+</code></pre>
+
+<p>Сегодня я для себя решил наконец задачу тестирования таких методов, а именно той части, которая отвечает за корректную передачу параметров в партиал. </p>
+
+<p>Шаг 1: переопределяем метод render, который вызывается внутри хелпера, таким образом, чтобы он перебрасывал переданные параметры на объект типа Proc. Этот объект будет являться нашим индикатором.</p>
+
+<pre><code>
+require File.dirname(__FILE__) + '/../../spec_helper'
+
+describe MyHelper, "при генерации виджета изображений" do
+  include MyHelper
+
+  before :each do
+    @render = Proc.new {}
+  end
+
+  def render(args)
+    @render.call(args)
+  end
+end
+</code></pre>
+
+<p>Шаг 2: Формируем объект-индикатор</p>
+
+<pre><code>
+it "должен передавать дефолтное значение ключа :default1 в партиал" do
+  @render = Proc.new do |args|
+    args[:locals][:options][:default1].should = 123
+  end
+
+  my_helper
+end
+
+it "должен передавать заданное значение ключа :default1 в партиал" do
+  @render = Proc.new do |args|
+    args[:locals][:options][:default1].should = 456
+  end
+
+  my_helper :default1 => 456
+end
+</code></pre>
+
+<p>Таким образом мы можем тестировать передачу отдельных ключей без связывания их друг с другом. </p>
+
+<p>А у вас есть велосипеды собственного изобретения? :) Если есть - делитесь ссылками!</p>
+

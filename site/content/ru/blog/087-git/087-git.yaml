@@ -1,0 +1,11 @@
+# Built-in
+custom_path: "/2008/6/6/git"
+
+# Custom
+title: "Личное мнение о Git"
+
+publicated_at: "06.06.2008"
+
+tags:
+- Git
+- Version Control

@@ -1,0 +1,16 @@
+  <p>Итак, конференция состоялось. Всем принявшим участие - спасибо что пришли, было очень интересно. Из запомнившихся:</p>
+
+<ul>
+<li><a href="http://www.rupy.ru/member/103/#paper-13">StrokeDB</a> в исполнении <a href="http://be-9.blogspot.com/">Олега Дашевского</a></li>
+<li><a href="http://www.rupy.ru/member/4/#paper-20">HAML/SASS</a> в исполнении <a href="http://zoob.ru/">Ивана Немытченко</a> (мы с ним вместе участвовали в <a href="http://www.railsrumble.com/">Rails Rumble</a> и на конференции наконец познакомились вживую)</li>
+
+<li>Круглый стол <strong>Rails vs. Django</strong></li>
+</ul>
+
+<p>Ну и конечно не могу не упомянуть о моей собственной презентации <strong>Facebook-приложения на Ruby on Rails</strong>. Слайды можно посмотреть <a href="http://www.html-blog.ru/2008/6/23/rupyru-report#slides">тут</a>. Если честно, я не ожидал такого количества вопросов, какое было задано. Видимо, я много чего упустил при разработке презентации. Ответы на вопросы можно будет посмотреть чуть позже, когда будет готово видео, так что оставайтесь на линии.</p>
+
+<p><a name="slides"></a></p>
+
+<iframe src='http://docs.google.com/EmbedSlideshow?docid=dgwt9hzz_65cjfsf8hd&amp;size=m' frameborder='0' width='555' height='451'></iframe>
+  
+

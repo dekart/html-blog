@@ -1,0 +1,3 @@
+  <p>Вновь дошли руки до <a href="http://www.html-blog.ru/2008/3/14/ruby-is-not-rails">списка ruby-фреймворков</a>, написал по паре предложений про Sinatra, StaticMatic, Nanoc, Waves, Halcyon и Nitro.</p>
+
+

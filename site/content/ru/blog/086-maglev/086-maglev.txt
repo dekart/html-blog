@@ -1,0 +1,49 @@
+  <p>В интересные времена живем, товарищи! Создание новых фреймворков на ruby - это уже вчерашний день. По-настоящему модно сейчас писать собственную виртуальную машину для Ruby. Сами посудите, новые имена появляются буквально как грибы после дождя: JRuby, IronRuby, YARV, Rubinius, Passenger. А на <strong>RailsConf</strong> господа из <a href="http://gemstone.com">GemStone</a> анонсировали свою новую разработку - <a href="http://ruby.gemstone.com/">Maglev</a>.</p>
+
+<p>Из того небольшого объема информации, что уже есть в сети, я могу сказать, что <strong>Maglev</strong> - это виртуальная машина для Ruby на базе <a href="http://www.gemstone.com/products/smalltalk/">GemStone S64 VM</a>, предназначенная для создания действительно масштабируемых приложений. Одной из особенностей является то, что приложения вместо реляционных баз данных используют собственное нереляционное хранилище объектов (именно объектов), вмещающее до 17 петабайт данных (17 тысяч терабайт, прости господи). </p>
+
+<p>По словам <a href="http://www.chadfowler.com/2008/6/5/maglev">людей осведомленных</a>, <strong>Maglev</strong> обещает быть быстрее чем <strong>MRI</strong> примерно в 100 раз. Само собой, это цифры исключительно на специализированных тестах, но и они впечатляют. Я так думаю, будет во всяком случае не медленнее. А на узкоспециализированном тесте <a href="http://shootout.alioth.debian.org/gp4/benchmark.php?test=binarytrees&amp;lang=ruby">binary-trees</a> показатели производительности вообще какие-то космические, скорость приближается к реализации на c++:</p>
+
+<p><table>
+<tr>
+<td><span class="caps">PHP</span> 5.2.5</td>
+<td>100.603s</td>
+</tr>
+<tr></p>
+
+<p><td>Perl 5.8.8</td>
+<td>70.885s</td>
+</tr>
+
+<tr>
+<td>Ruby 1.8.6</td>
+<td>60.089s</td>
+</tr>
+<tr>
+<td>Python 2.5.1</td>
+<td>29.908s</td>
+</tr></p>
+
+<p><tr style="background:lightgreen;">
+<td>MagLev</td>
+<td>7.673s</td>
+
+</tr>
+<tr>
+<td>C++ (gcc 4.0.1)</td>
+<td>6.265s</td>
+</tr>
+</table><br /></p>
+
+<p>Само собой, не обходится и без минусов. Платформа <strong>GemStone</strong>, на базе которой реализуется <strong>Maglev</strong>, отнюдь не бесплатна. Это означает, что воспользоваться ее преимуществами смогут только те, кому это реально позарез надо и кто готов платить деньги за масштабируемость. Однако, вполне возможно что компания еще придет к разработке частично открытой платформы, либо к созданию бесплатной (функционально ограниченной) редакции <strong>Maglev</strong> для сообщества, как это было сделано для <a href="http://seaside.gemstone.com">GLASS</a>. </p>
+
+<p>Платформа для Ruby была разработана всего за 3 месяца, что реально впечатляет. Над виртуальной машиной сейчас работает 8 человек. В ближайшиех планах разработчиков полное соответствие <a href="http://rubyspec.org/">RubySpec</a>, а уже затем доработка для запуска Rails.</p>
+
+<p><strong>Чтиво по теме:</strong></p>
+
+<ul>
+<li><a href="http://www.infoq.com/news/2008/04/maglev-gemstone-builds-ruby">Technical interview with Gemstone&#8217;s Bob Walker and Avi Bryant</a></li>
+<li><a href="http://www.infoq.com/news/2008/05/MagLevAtRailsConf">GemStone Reveals Plans for MagLev Ruby VM at RailsConf 2008</a></li>
+</ul>
+  
+

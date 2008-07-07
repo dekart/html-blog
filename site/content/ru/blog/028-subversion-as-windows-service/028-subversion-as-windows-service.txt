@@ -1,0 +1,30 @@
+  <p>Вот у меня возникла такая задача: я хочу запустить <strong>Subversion</strong> под <strong>Windows</strong> в качестве сервиса (службы), чтобы доступ к локальному репозиторию был постоянно, без запуска сервера вручную. Давайте попробуем это сделать.</p>
+
+<p>В первую очередь, нам нужно поставить свежий дистрибутив <a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91">Subversion для Windows</a>. Устанавливаем его, например в папку <strong>C:\Program Files\Subversion</strong>. </p>
+
+<p>После установки <strong>Subversion</strong> нам необходимо создать папку, в которой будут храниться наши локальные репозитории. Например, это будет папка <strong>D:\Repository</strong>.</p>
+
+<p>Далее, нам потребуется утилита <strong>instsrv.exe</strong>. Ее можно скачать вместе с <strong>Windows Resource Kit</strong> (его искать на <a href="http://www.microsoft.com">хомяке</a> у дяди Гейтса, где конкретно - не скажу) или просто взять <a href="http://www.winall.ru/xp/files/srvany.zip">отсюда</a> (спасибо <a href="http://www.winall.ru/">WinAll</a> за малый объем архива). Файл надо распаковать и содержимое скопировать в папку <strong>C:\Windows\system32</strong></p>
+
+<p>Получив эту замечательную утилиту, мы уже можем установить сервис. Для этого мы запускаем вот такую сказочную команду:</p>
+
+<p><strong>instsrv.exe &#8220;Subversion Server&#8221; &#8220;c:\Program Files\Subversion\bin\svnserve.exe&#8221;</strong></p>
+
+<p>После выполнения этой команды мы в списке служб можем увидеть новую службу под названием <strong>Subversion Server</strong>. Запускать ее пока рано, нужно сделать еще немножко телодвижений. Нужно открыть в редакторе реестра (regedit) ветку <strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Subversion Server</strong> и поправить в ней параметр <strong>ImagePath</strong>, указав в нем следующее значение:</p>
+
+<p><strong>c:\Program Files\Subversion\bin\svnserve.exe &#45;-service -r d:\repository</strong></p>
+
+<p>Ключ <strong>&#45;-service</strong> означает, что программа должна запускаться как сервис, а параметр <strong>-r&nbsp;d:\repository</strong> дает программе понять, что все запрашиваемые адреса надо обрабатывать относительно директории <strong>d:\repository</strong>. </p>
+
+<p>Сохраняем значение параметра и запускаем сервис. Если все сделано правильно, сервис должен успешно запуститься.</p>
+
+<p>Далее, заходим в папку <strong>d:\repository</strong> и создаем репозиторий:</p>
+
+<p><strong>svnadmin create myfirstrepo</strong></p>
+
+<p>Теперь мы можем начинать работу с этим репозиторием используя адрес <strong>svn://127.0.0.1/myfirstrepo/</strong></p>
+
+<p>Удачного коммита!</p>
+
+<p><strong>UPD:</strong> В комментах <a href="http://miracle.wordpress.com/">MiRacle</a> рассказал как можно создать сервис в Windows XP без загрузки дополнительных утилит. За это спасибо ему большое.</p>
+

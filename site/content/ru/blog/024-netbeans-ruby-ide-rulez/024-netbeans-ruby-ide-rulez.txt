@@ -1,0 +1,4 @@
+  <p>А вы знаете, дамы и господа&#8230; Господин <a href="http://novemberain.com/">Клишин</a> не врёт, <a href="http://novemberain.com/2007/6/14/ruby-ide-roundup-reloaded">расхваливая</a> <strong>NetBeans Ruby IDE</strong>. По сравнению с <a href="http://aptana.com/">Aptana</a> (бывший <strong>RadRails</strong>) - просто сказка. Автокомплит, подсветка, удобное дерево проекта, outline, вполне приличная работа с <strong>SVN</strong>, миграции, рэйки и фэншуи в контекстном меню - всё что надо честному девелоперу. Кушает <a href="http://deadlock.netbeans.org/hudson/job/ruby/">эта сказка</a> у меня, правда, ничуть не меньше чем <strong>Eclipse</strong>, но зато при этом существенно меньше тормозит. </p>
+
+<p>Рекомендую <a href="http://deadlock.netbeans.org/hudson/job/ruby/">скачать и попробовать</a>.</p>
+

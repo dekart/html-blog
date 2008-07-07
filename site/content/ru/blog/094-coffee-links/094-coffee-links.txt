@@ -1,0 +1,14 @@
+  <p>Кофе уже выпит, а ссылки только-только подвезли:</p>
+
+<ul>
+<li><a href="http://extjs.com/blog/2008/07/01/integrating-google-maps-api-with-extjs/">Ext JS + Google Maps</a> - компонент Google Maps для фреймворка Ext JS</li>
+<li><a href="http://github.com/mislav/shrubbery/tree/master">Shrubbery</a> - виджет для Prototype, который позволяет создавать <a href="http://mislav.caboo.se/static/shrubbery/sample/">вот такие</a> вложенные мега-списки.</li>
+
+<li><a href="http://pivots.pivotallabs.com/users/brian/blog/articles/459-build-your-own-rails-plugin-platform-with-desert">Desert</a> - альтернатива Rails Engines, позволяет создавать плагины, включающие в себя фактически целое приложение с контроллерами, моделями, миграциями и прочим</li>
+<li><a href="http://github.com/pivotal/cacheable-flash/tree/master">cacheable-flash</a> - плагин для отображения сообщений из flash на закэшированных страницах.</li>
+<li><a href="http://github.com/intinig/chuck_norris/tree/master/chuck_norris.rb">Chuck Norris Class</a> - No one initializes Chuck Norris :)</li>
+</ul>
+
+<p>Вообще полезно ковыряться в чужих профайлах на гитхабе. Иногда случаются просто неверятные находки.</p>
+  
+

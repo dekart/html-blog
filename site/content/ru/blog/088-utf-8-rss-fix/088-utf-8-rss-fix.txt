@@ -1,0 +1,43 @@
+  <p>Несмотря на тот факт, что на дворе уже Rails <a href="http://blog.rubyonrails.com/2008/6/1/rails-2-1-time-zones-dirty-caching-gem-dependencies-caching-etc">версии 2.1</a>, в рельсах до сих пор присутствует косяк, который портит кровь русскоязычным (и прочим) веб-мастерам. Точнее, это косяк не в рельсах как таковых, а в библиотеке <a href="http://builder.rubyforge.org/">Builder</a>, которую рельсы используют для генерации XML-документов. Проявляется он в том, что если вы генерируете документ с кириллическими символами, то на выходе вы получаете текст, закодированный в xml entities. Выглядит вот так:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss version="2.0"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;&amp;#1042;&amp;#1089;&amp;#1077; &amp;#1076;&amp;#1086;&amp;#1084;&amp;#1072; - &amp;#1044;&amp;#1086;&amp;#1084;&amp;#1072; 2.0&lt;/title&gt;
+
+    &lt;link&gt;http://doma20.ru/houses.rss&lt;/link&gt;
+    &lt;description&gt;&amp;#1042;&amp;#1089;&amp;#1077; &amp;#1076;&amp;#1086;&amp;#1084;&amp;#1072; - &amp;#1044;&amp;#1086;&amp;#1084;&amp;#1072; 2.0 - &amp;#1057;&amp;#1072;&amp;#1081;&amp;#1090; &lt;/description&gt;
+
+...
+</code></pre>
+
+<p>Согласитесь, это никуда не годится. Кто его знает, как с таким XML-документом будут работать потребляющие его ридеры и конвертеры. Без косяков тут точно не обойдется.</p>
+
+<p>Чтобы решить эту проблему, я в свое время откопал небольшой фикс, который добавляет кириллические символы в список разрешенных для прямого вывода, что вполне приемлимо при правильно выставленной кодировке документа. Фикс такой:</p>
+
+<pre><code>class Fixnum #:nodoc:
+  XChar = Builder::XChar if ! defined?(XChar)
+
+  # XML escaped version of chr (inlines cyrillic unicode range)
+  def xchr
+    n = XChar::CP1252[self] || self
+    n = 42 unless XChar::VALID.find {|value| value.kind_of?(Range) ? value.include?(n) : (value == n)}
+
+    XChar::PREDEFINED[n] or case n
+      when 0...128
+        n.chr
+      when 0x400..0x4FF
+        [n].pack 'U'
+      else
+        "&##{n};"
+      end
+  end
+end
+</code></pre>
+
+<p>Пакуем его в файлик <code>xml_utf8_fix.rb</code> и складываем в <code>RAILS_ROOT/lib</code>, а затем подключаем в самом конце <code>config.rb</code>:</p>
+
+<pre><code>require "xml_utf8_fix"</code></pre>
+
+<p>Подключили, рестартнули сервер - и проблема решена! Хоть убейте, но я не помню где взял этот код. Если вы узнали свое произведение, скиньте мне информацию о вас на rene.dekart[собако]gmail.com - я вас отблагодарю ссылочкой в этом блоге :)</p>
+

@@ -1,0 +1,11 @@
+  <p>Все никак руки у меня до <a href="http://git.or.cz/">Git</a> не доходили, но сейчас по ходу дела придется заняться всерьез. Репозиторий Ruby on Rails <a href="http://weblog.rubyonrails.org/2008/4/2/rails-is-moving-from-svn-to-git">переезжает</a> на <a href="http://github.com/">Github</a>. А заодно господа из rails team решили перенести тикет-трекинг в <a href="http://www.lighthouseapp.com/">Lighthouse</a>. Что ж, и то, и другое не может не радовать. <strong>Git</strong> гораздо удобнее чем <strong>Subversion</strong>, равно как и <strong>Lighthouse</strong> удобнее чем <strong>Trac</strong>. Чтобы все прошло успешно, скрестим пальцы на ногах :)</p>
+
+<p>А пока процесс идет, рекомендую поглядеть:</p>
+
+<ul>
+<li><a href="http://git.or.cz/course/svn.html">Git - SVN Crash Course</a> - для тех, кто уже пользуется SVN и хочет переехать на Git</li>
+<li>Подробный tutorial в <a href="http://www.kernel.org/pub/software/scm/git/docs/tutorial.html">двух</a> <a href="http://www.kernel.org/pub/software/scm/git/docs/tutorial-2.html">частях</a></li>
+<li><a href="http://www.vimeo.com/369095">Скринкаст</a> по развертыванию Rails-приложений из Git с помощью Capistrano</li>
+
+</ul>
+

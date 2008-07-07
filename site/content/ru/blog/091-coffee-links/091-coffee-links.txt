@@ -1,0 +1,11 @@
+  <p>Вот вам пара ссылок для осиливания:</p>
+
+<ul>
+<li><a href="http://www.vimeo.com/1147409">MagLev presentation at RailsConf 2008 - part 1</a> - некоторая информация о <a href="http://www.html-blog.ru/2008/6/6/maglev">Maglev</a> с демонстрацией возможностей (аж руки зачесались)</li>
+<li><a href="http://los-t.livejournal.com/tag/git+guts">git guts</a> - заметки о git на русском языке</li>
+
+<li><a href="http://socialtrend.ru/">Social Trend</a> - блог о вебдваноль, весьма интересный и еще не загаженный рекламой говностартапов</li>
+</ul>
+
+<p>Я предпочитаю такие вещи осознавать в процессе выпивания утреннего кофе. Поэтому будем называть их кофейными ссылками.</p>
+

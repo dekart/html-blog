@@ -1,0 +1,41 @@
+  <p>В июне я писал <a href="http://www.html-blog.ru/2007/6/3/external-resources-for-application">заметку</a> о том, как облегчить себе жизнь при <a href="http://www.html-blog.ru/2007/6/3/external-resources-for-application">использовании чужих библиотек в своем приложении</a>. Я этот способ использовал достаточно долго и, надо сказать, весьма успешно. Однако, применять его в <a href="http://www.html-blog.ru/2007/8/24/my-first-open-source-project">моем новом проекте</a> оказалось весьма неудобно. Тонкости описывать не буду, уж больно нудно и заумно получается, да и ни к чему. Суть в том, что умные дядьки придумали решение в чем-то гораздо более удобное - <a href="http://piston.rubyforge.org/"><strong>piston</strong></a>.</p>
+
+<p><strong>Что такое piston</strong></p>
+
+<p><strong>Piston</strong> - это инструмент для управления внешними ресурсами, написанный на <strong>ruby</strong>. Он позволяет вам хранить весь код в своем репозитории, без подключения внешних источников через <code>svn:externals</code>, сохраняя при этом возможность обновлять код.</p>
+
+<p><strong>Использование</strong></p>
+
+<p>Импорт из внешнего репозитория:</p>
+
+<pre><code>$ piston import http://svn.rubyonrails.org/rails/trunk vendor/rails
+Exported r7358 from 'http://svn.rubyonrails.org/rails/trunk' to 'vendor/rails'
+
+$ svn commit -m "Импортируем локальную копию Rails"</code></pre>
+
+<p>Когда мы хотим получить последние обновления из внешнего источника, мы делаем следующее:</p>
+
+<pre><code>$ piston update vendor/rails
+Updated 'vendor/rails' to r7358.
+
+$ svn commit -m "Updates vendor/rails to the latest revision"</code></pre>
+
+<p>Если мы хотим зафиксировать ресурс на текущей версии, мы делаем так:</p>
+
+<pre><code>$ piston lock vendor/rails
+'vendor/rails' locked at r7358.</code></pre>
+
+<p>Если хотим снова обновляться, делаем так:</p>
+
+<pre><code>$ piston unlock vendor/rails
+'vendor/rails' unlocked.</code></pre>
+
+<p>Единственный минус этого инструмента - он медленный. Существенно медленнее, чем прямая работа с <strong>Subversion</strong>. Однако, ради такого дела можно потерпеть, т.к. иногда задачу иначе не решить (как в моем случае).</p>
+
+<p><strong>Установка</strong></p>
+
+<pre><code>gem install --include-dependencies piston</code></pre>
+
+<p><a href="http://piston.rubyforge.org/">Официальный сайт проекта</a></p>
+
+

@@ -1,0 +1,17 @@
+  <p>Очередная порция интересных ссылок:</p>
+
+<ul>
+<li><p><strong>Jamis Buck</strong> в официальном блоге Ruby on Rails радует нас <a href="http://weblog.rubyonrails.com/2008/2/28/capistrano-2-2-0">выходом Capistrano 2.2.0</a>. В новой версии добавлена возможность динамического задания ролей серверов, ограничения количества серверов, на которых одновременно выполняются задачи, а так же расширена поддержка <strong>GIT</strong>.</p></li>
+<li><p><strong>Pascal</strong> выпустил плагин <a href="http://blog.nanorails.com/rails-undo-redo">Rails Undo-Redo</a>, позволяющий встроить сей замысловатый функционал в ваше приложение.  Демонстрационное приложение <a href="http://rur-demo.nanorails.com/">прилагается</a>.</p></li>
+
+<li><p><strong>HighScalability.com</strong> дает обзор Rails-приложения <strong>Friends For Sale</strong>, обрабатывающего <a href="http://highscalability.com/friends-sale-architecture-300-million-page-view-month-facebook-ror-app">300 миллионов</a> (!) просмотров страниц в месяц. Если кто-то из ваших знакомых еще хоть раз заикнется про то, что рельсы слишком медленные - можете затыкать ему глотку распечаткой этой заметки</p></li>
+<li><p><strong>Юрий Рашковский</strong> радует нас экспериментальной <a href="http://rashkovskii.com/articles/2008/2/29/experimental-has_many-support">поддержкой has_many</a> для <strong>StrokeDB</strong> </p></li>
+
+<li><p><strong>SapphireSteel Software</strong> сообщает о выходе альфа-версии <a href="http://www.sapphiresteel.com/Ruby-In-Steel-For-IronRuby">Ruby in Steel</a> IDE для <strong>Microsoft IronRuby</strong> - реализации ruby-интерпретатора под платформу <strong>.NET</strong></p></li>
+<li><p>В нескольких блогах и рассылках упоминается новый ruby-фреймворк под названием <strong>Waves</strong>. Попробовать его можно, поставив gem (<code>gem install waves</code>) и почитав <a href="http://rubywaves.com/tutorial">tutorial</a>. </p></li>
+
+<li><p>Ну и напоследок вкусная конопушка - <a href="http://ozmm.org/posts/try.html">try()</a>. </p></li>
+</ul>
+
+<p>С масленицей вас!</p>
+

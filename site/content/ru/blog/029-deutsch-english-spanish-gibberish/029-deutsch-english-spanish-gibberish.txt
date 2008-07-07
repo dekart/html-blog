@@ -1,0 +1,79 @@
+  <p>Для локализации шаблонов (и вообще любого текста, хранящегося непосредственно в коде) наиболее удобным инструментом, на мой взгляд, является плагин под названием <strong>Gibberish</strong>.</p>
+
+<p><strong>Использование</strong></p>
+
+<p>Пользоваться <strong>Gibberish</strong> проще некуда. Допустим, нужно в шаблоне локализовать некую строку &#8220;Hello world&#8221;. В этом случае мы делаем так:</p>
+
+<pre><code>&lt;%= "Hello World"[:hello_world] %&gt;
+</code></pre>
+
+<p>По дефолту будет выводиться строка как она указана в кавычках. Однако, стоит нам сменить текущую локализацию, как вместо значения в кавычках будет подставлено значение из файла локализации, соответствующее ключу в квадратных скобках.</p>
+
+<p><strong>Файл локализации</strong></p>
+
+<p>Локализованные строки хранятся в YAML-файлах в папке <code>RAILS_ROOT/lang</code>. Названия файлов соответствуют названиям локализаций. Например, <code>ru.yml</code>:</p>
+
+<pre><code>hello_world: Привет, мир
+welcome: Добро пожаловать, {user}
+good_bye: Всего доброго
+</code></pre>
+
+<p>В development-режиме файлы локализации заново загружаются при каждом запросе.</p>
+
+<p><strong>Переключение языков</strong></p>
+
+<p>Текущий язык переключить очень просто:</p>
+
+<pre><code>Gibberish.current_language = :ru
+</code></pre>
+
+<p>В этом случае будут использоваться строки локализации из файла <code>RAILS_ROOT/lang/ru.yml</code>. Кроме того, язык можно переключить только для выполнения конкретного блока, например, в составе фильтра:</p>
+
+<pre><code>class ApplicationController &lt; ActionController::Base
+  around_filter :set_language
+
+private
+  def set_language
+    Gibberish.use_language(session[:language]) { yield }
+  end
+end
+</code></pre>
+
+<p>По умолчанию используется локализация <code>:en</code>.</p>
+
+<p><strong>Вставка текста</strong></p>
+
+<p><strong>Gibberish</strong> поддерживает замечательную возможность - поздняя вставка текста в строки локализации. Например, нам нужно локализовать приветственное сообщение. В русском языке оно должно выглядеть как "DEkart, добро пожаловать", а в английском как "Welcome, DEkart". В этом случае мы задем строку локализации следующим образом:</p>
+
+<pre><code># ru.yml
+welcome: {user}, добро пожаловать
+
+# en.yml
+welcome: Welcome, {user}
+
+# шаблон
+&lt;%= ""[:welcome, current_user.login] %&gt;
+</code></pre>
+
+<p>Подстрока <code>{user}</code> будет автоматически заменена на <code>current_user.login</code>. Если после ключа в квадратных скобках передается массив, то подстроки в фигурных скобках будут заменяться последовательно. Если же передан Hash, то замена произойдет в соответствии с ключами:</p>
+
+<pre><code># ru.yml
+welcome: {user}, добро пожаловать! У вас {message_count} сообщений.
+
+# шаблон
+&lt;%= ""[:welcome, {:message_count =&gt; @message_count, :user =&gt; current_user.login}] %&gt;
+
+=&gt; DEkart, добро пожаловать! У вас 10 сообщений.
+</code></pre>
+
+<p><strong>Установка</strong></p>
+
+<pre><code>ruby script/plugin install svn://errtheblog.com/svn/plugins/gibberish
+</code></pre>
+
+<p>README на английском: <a href="http://require.errtheblog.com/plugins/browser/gibberish">http://require.errtheblog.com/plugins/browser/gibberish</a></p>
+
+<p><strong>Резюме</strong></p>
+
+<p>Плагин очень прост и понятен. Я использую его для локализации всех строковых значений в шаблонах, моделях, контроллерах: текстов ссылок, flash-сообщений, сообщений об ошибках валидации, даже форматов дат.  Конечно, с помощью <strong>gibberish</strong> не реализовать перевод данных в моделях, но этого и не требуется. Перевод моделей - это совсем другая история.</p>
+

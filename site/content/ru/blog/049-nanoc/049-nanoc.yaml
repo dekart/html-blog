@@ -1,0 +1,10 @@
+# Built-in
+custom_path: "/2008/1/5/nanoc"
+
+# Custom
+title: "nanoc"
+
+publicated_at: "01.05.2008"
+
+tags:
+- Ruby

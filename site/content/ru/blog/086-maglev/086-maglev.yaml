@@ -1,0 +1,12 @@
+# Built-in
+custom_path: "/2008/6/6/maglev"
+
+# Custom
+title: "Maglev - Ruby в 13 раз быстрее PHP!"
+
+publicated_at: "06.06.2008"
+
+tags:
+- Ruby on Rails
+- Maglev
+- PHP
