@@ -1,0 +1,5 @@
+<p>На сегодня под кофе читаем всего одну ссылку, но весьма и весьма важную:</p>
+
+<ul>
+<li><a href="http://www.igvita.com/2008/07/08/6-optimization-tips-for-ruby-mri/">http://www.igvita.com/2008/07/08/6-optimization-tips-for-ruby-mri/</a></li>
+</ul>

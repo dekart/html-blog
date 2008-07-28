@@ -1,0 +1,8 @@
+<ul>
+<li><a href="http://github.com/sandal/prawn/tree/master">Prawn</a> - ruby-библиотека для генерации PDF</li>
+<li><a href="http://www.ibm.com/developerworks/views/web/libraryview.jsp?search_by=real+world+rails">Real World Rails</a> - несколько статей об использовании рельс в рельных корпоративных условиях</li>
+<li><a href="http://spin.atomicobject.com/2008/07/02/rolling-a-jruby-desktop-application">Rolling a JRuby desktop application</a></li>
+
+<li><a href="http://codeclimber.blogspot.com/2008/06/using-ruby-for-imap-with-gmail.html">Using Ruby for IMAP with Gmail</a></li>
+<li><a href="http://blog.fiveruns.com/2008/7/9/introducing-data_fabric">DataFabric</a> - плагин для разделения данных по нескольким серверам БД</li>
+</ul>
